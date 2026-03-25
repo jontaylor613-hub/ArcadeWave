@@ -1,3 +1,70 @@
+function buildGdGameUrl(gd, w, h, title) {
+  const p = new URLSearchParams({
+    id: gd,
+    w: String(w),
+    h: String(h),
+    t: title,
+  });
+  return `games/gd.html?${p.toString()}`;
+}
+
+function gdThumbPlaceholder(title, index) {
+  const bg = ["1a0035", "001a20", "0a001e", "001a0a", "1a0a00"];
+  const fg = ["ff2d78", "00f5ff", "bf00ff", "00ff88", "ffe600"];
+  const i = index % bg.length;
+  const text = encodeURIComponent(
+    title.replace(/[^a-z0-9]+/gi, " ").trim().slice(0, 16) || "GAME"
+  );
+  return `https://placehold.co/300x195/${bg[i]}/${fg[i]}?text=${text}&font=oswald`;
+}
+
+const GD_CATALOG = [
+  { title: "ArcadeWave Select 1", category: "arcade", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "27673bc45d2e4b27b7cd24e422f7c257", w: 1280, h: 960 },
+  { title: "ArcadeWave Select 2", category: "puzzle", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "bf1268dccb5d43e7970bb3edaa54afc8", w: 900, h: 600 },
+  { title: "ArcadeWave Select 3", category: "action", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "5b0abd4c0faa4f5eb190a9a16d5a1b4c", w: 720, h: 480 },
+  { title: "ArcadeWave Select 4", category: "racing", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "9ee26ba4405c456094c70af7dc31a524", w: 800, h: 600 },
+  { title: "ArcadeWave Select 5", category: "sports", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "a55c9cc9c21e4fc683c8c6857f3d0c75", w: 900, h: 510 },
+  { title: "ArcadeWave Select 6", category: "platformer", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "95cde1eb260141f8b960bb3d5dbeb34a", w: 1280, h: 720 },
+  { title: "ArcadeWave Select 7", category: "io", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "5af66c57218d4217812bb98762554c0d", w: 800, h: 600 },
+  { title: "ArcadeWave Select 8", category: "arcade", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "d82128fba97f4bac9afa5ae9e73ab362", w: 800, h: 600 },
+  { title: "ArcadeWave Select 9", category: "puzzle", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "cf3034430df748ca99a461f1667a3c6c", w: 800, h: 600 },
+  { title: "ArcadeWave Select 10", category: "action", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "5083a63adc7248d8b04dd72cde2eb78c", w: 1280, h: 720 },
+  { title: "ArcadeWave Select 11", category: "racing", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "0bd1e5d745554a4c9d1defd57dd91aa5", w: 800, h: 600 },
+  { title: "ArcadeWave Select 12", category: "sports", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "c9f842ab8eab48a884f3733beeffd140", w: 550, h: 990 },
+  { title: "ArcadeWave Select 13", category: "platformer", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "3b79a8537ebc414fb4f9672a9b8c68c8", w: 960, h: 600 },
+  { title: "ArcadeWave Select 14", category: "io", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "b3507beea8bc46638a6d5e7c768a8202", w: 960, h: 600 },
+  { title: "ArcadeWave Select 15", category: "arcade", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "93ec13ded90f4ef8b46b91f7654945cd", w: 800, h: 600 },
+  { title: "ArcadeWave Select 16", category: "puzzle", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "9abe6af0fbb440b98a3e24bf7fb0636a", w: 800, h: 600 },
+  { title: "ArcadeWave Select 17", category: "action", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "1f9b60ba0bc64da2b082fcc8aa4b5100", w: 800, h: 600 },
+  { title: "ArcadeWave Select 18", category: "racing", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "a084e6ab82f9420bbe89bbe5c1b150fc", w: 1280, h: 720 },
+  { title: "ArcadeWave Select 19", category: "sports", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "4c35db256f3c4f5bbf041169c0465a3c", w: 1624, h: 750 },
+  { title: "ArcadeWave Select 20", category: "platformer", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "a8ac99e5ba244f5fb4138880dbee5339", w: 800, h: 600 },
+  { title: "ArcadeWave Select 21", category: "io", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "b4b0a3ebfb684bcda80a5cb8cc64278e", w: 1920, h: 1080 },
+  { title: "ArcadeWave Select 22", category: "arcade", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "bd03a8447d8b45078037b50a0d1a536e", w: 750, h: 1334 },
+  { title: "ArcadeWave Select 23", category: "puzzle", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "732542dbfb7f4804b95a8ece1e56545a", w: 800, h: 600 },
+  { title: "ArcadeWave Select 24", category: "action", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "659090e00bfc4650899550d63f8a130d", w: 800, h: 600 },
+  { title: "ArcadeWave Select 25", category: "racing", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "f4055ea8c0794a50badf82d7ce837eaa", w: 800, h: 600 },
+  { title: "ArcadeWave Select 26", category: "sports", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "f687697ca011407aad07979006422fa4", w: 1280, h: 720 },
+  { title: "ArcadeWave Select 27", category: "platformer", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "c0ec7c50918143e8b7ba4b32282ed0e9", w: 800, h: 600 },
+  { title: "ArcadeWave Select 28", category: "io", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "c458262283b944e3b57c8a26b241a0fc", w: 800, h: 600 },
+  { title: "ArcadeWave Select 29", category: "arcade", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "0b2abc29bd9c400cb7a7dce4a8a79d44", w: 800, h: 600 },
+  { title: "ArcadeWave Select 30", category: "puzzle", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "9fd0bb2225334fc69d2ae8d5aa953096", w: 1280, h: 720 },
+  { title: "ArcadeWave Select 31", category: "action", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "8748f54767044b99bc5373fc61596123", w: 800, h: 600 },
+  { title: "ArcadeWave Select 32", category: "racing", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "5a53e42689db4c59bbdc3dab56cad6cd", w: 1920, h: 1080 },
+  { title: "ArcadeWave Select 33", category: "sports", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "1412394a892d49f5a41763899ca6354e", w: 1920, h: 1080 },
+  { title: "ArcadeWave Select 34", category: "platformer", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "197d1fd19c3c40a0b72aca3f14a5ee79", w: 1280, h: 720 },
+  { title: "ArcadeWave Select 35", category: "io", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "23cb11d780fc483da862b4779ff8cefd", w: 1920, h: 1080 },
+  { title: "ArcadeWave Select 36", category: "arcade", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "3cb2c3b36dca4446b037be38ddc12379", w: 800, h: 600 },
+  { title: "ArcadeWave Select 37", category: "puzzle", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "6fdee70ee76d41db878c6da5d7bb39c5", w: 600, h: 800 },
+  { title: "ArcadeWave Select 38", category: "action", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "0f73244bf0cd494ba3f42aee62061f83", w: 800, h: 600 },
+  { title: "ArcadeWave Select 39", category: "racing", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "31724ff3e3554daf8359c719aa4304d6", w: 800, h: 600 },
+  { title: "ArcadeWave Select 40", category: "sports", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "ed080dc2762e444385274d875eae5dd8", w: 800, h: 600 },
+  { title: "ArcadeWave Select 41", category: "platformer", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "837aa1aafa2442cf81a622b505bff752", w: 800, h: 450 },
+  { title: "ArcadeWave Select 42", category: "io", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "69de40c65abb4599988f92d8206efb38", w: 1024, h: 768 },
+  { title: "ArcadeWave Select 43", category: "arcade", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "a186dc9ac7f548f884db8ff54df6dd9f", w: 800, h: 600 },
+  { title: "ArcadeWave Select 44", category: "puzzle", desc: "Free browser game (GameDistribution). Opens on its own page for the best embed experience.", gd: "1d9e7e2883e144d293c0894e230b5441", w: 800, h: 600 },
+];
+
 const GAMES = [
   {
     id: 1,
@@ -227,6 +294,15 @@ const GAMES = [
     url: "games/invaders.html",
     thumb: "https://placehold.co/300x195/0a0020/bf00ff?text=INVADERS&font=oswald",
   },
+  ...GD_CATALOG.map((g, i) => ({
+    id: 29 + i,
+    title: g.title,
+    category: g.category,
+    desc: g.desc,
+    url: buildGdGameUrl(g.gd, g.w, g.h, g.title),
+    thumb: gdThumbPlaceholder(g.title, i),
+    openAsPage: true,
+  })),
 ];
 
 const CATEGORIES = [
@@ -354,6 +430,12 @@ function renderGames() {
       card.setAttribute("data-new-tab", "1");
       card.setAttribute("title", "Opens in a new browser tab");
     }
+    if (g.openAsPage) {
+      card.setAttribute("data-open-as-page", "1");
+      if (!g.openInNewTab) {
+        card.setAttribute("title", "Opens full page");
+      }
+    }
     card.setAttribute("aria-label", `Play ${g.title}`);
 
     const badgeClass = `cat-badge badge-${g.category}`;
@@ -397,6 +479,12 @@ function buildTopGames() {
       row.setAttribute("data-new-tab", "1");
       row.setAttribute("title", "Opens in a new browser tab");
     }
+    if (g.openAsPage) {
+      row.setAttribute("data-open-as-page", "1");
+      if (!g.openInNewTab) {
+        row.setAttribute("title", "Opens full page");
+      }
+    }
     row.setAttribute("aria-label", `Play ${g.title}, rank ${i + 1}`);
     row.innerHTML = `
       <div class="top-rank">#${i + 1}</div>
@@ -411,6 +499,10 @@ function openGameFromEl(el) {
   const url = el.getAttribute("data-url");
   const title = el.getAttribute("data-title");
   if (!url || !title) return;
+  if (el.getAttribute("data-open-as-page") === "1") {
+    window.location.assign(url);
+    return;
+  }
   if (el.getAttribute("data-new-tab") === "1") {
     window.open(url, "_blank", "noopener,noreferrer");
     return;
