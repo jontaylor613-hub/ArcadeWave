@@ -350,7 +350,10 @@ function renderGames() {
     card.setAttribute("tabindex", "0");
     card.setAttribute("data-url", g.url);
     card.setAttribute("data-title", g.title);
-    if (g.openInNewTab) card.setAttribute("data-new-tab", "1");
+    if (g.openInNewTab) {
+      card.setAttribute("data-new-tab", "1");
+      card.setAttribute("title", "Opens in a new browser tab");
+    }
     card.setAttribute("aria-label", `Play ${g.title}`);
 
     const badgeClass = `cat-badge badge-${g.category}`;
@@ -390,7 +393,10 @@ function buildTopGames() {
     row.setAttribute("tabindex", "0");
     row.setAttribute("data-url", g.url);
     row.setAttribute("data-title", g.title);
-    if (g.openInNewTab) row.setAttribute("data-new-tab", "1");
+    if (g.openInNewTab) {
+      row.setAttribute("data-new-tab", "1");
+      row.setAttribute("title", "Opens in a new browser tab");
+    }
     row.setAttribute("aria-label", `Play ${g.title}, rank ${i + 1}`);
     row.innerHTML = `
       <div class="top-rank">#${i + 1}</div>
