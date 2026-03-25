@@ -41,6 +41,11 @@ html {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  .ticker {
+    animation: none !important;
+    transform: none !important;
+  }
 }
 
 .skip-link {
@@ -293,12 +298,23 @@ header {
 
 .controls {
   max-width: 1200px;
-  margin: 0 auto 32px;
-  padding: 0 24px;
+  margin: 0 auto 36px;
+  padding: 22px 24px 24px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
   align-items: center;
+  background: linear-gradient(
+    165deg,
+    rgba(12, 8, 32, 0.65) 0%,
+    rgba(6, 5, 16, 0.35) 50%,
+    rgba(10, 6, 24, 0.5) 100%
+  );
+  border: 1px solid rgba(168, 85, 247, 0.14);
+  border-radius: var(--radius-md);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 20px 48px rgba(0, 0, 0, 0.35);
 }
 
 .search-wrap {
@@ -321,8 +337,8 @@ header {
 #search {
   width: 100%;
   padding: 14px 18px 14px 44px;
-  background: rgba(77, 240, 255, 0.04);
-  border: 1px solid rgba(77, 240, 255, 0.2);
+  background: rgba(6, 5, 20, 0.55);
+  border: 1px solid rgba(77, 240, 255, 0.22);
   border-radius: var(--radius-sm);
   color: var(--neon-cyan);
   font-family: inherit;
@@ -398,6 +414,7 @@ main.content-area {
   cursor: pointer;
   transition: transform 0.25s ease, border-color 0.25s, box-shadow 0.25s;
   position: relative;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
 }
 
 .game-card:hover {
@@ -640,10 +657,15 @@ main.content-area {
 }
 
 .ticker-wrap {
-  background: rgba(255, 61, 133, 0.05);
-  border-top: 1px solid rgba(255, 61, 133, 0.18);
-  border-bottom: 1px solid rgba(255, 61, 133, 0.18);
-  padding: 10px 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 61, 133, 0.04) 0%,
+    rgba(168, 85, 247, 0.07) 50%,
+    rgba(77, 240, 255, 0.05) 100%
+  );
+  border-top: 1px solid rgba(255, 61, 133, 0.22);
+  border-bottom: 1px solid rgba(77, 240, 255, 0.12);
+  padding: 12px 0;
   overflow: hidden;
   margin-bottom: 28px;
   position: relative;
@@ -673,17 +695,19 @@ main.content-area {
 .ticker {
   display: flex;
   white-space: nowrap;
-  animation: ticker-scroll 45s linear infinite;
+  animation: ticker-scroll 110s linear infinite;
   width: max-content;
+  will-change: transform;
 }
 
 .ticker-item {
   font-family: "Press Start 2P", monospace;
   font-size: 0.48rem;
   color: var(--neon-pink);
-  padding: 0 36px;
+  padding: 0 40px;
   letter-spacing: 0.08em;
-  opacity: 0.92;
+  opacity: 0.94;
+  text-shadow: 0 0 20px rgba(255, 61, 133, 0.25);
 }
 
 .ticker-item span {
