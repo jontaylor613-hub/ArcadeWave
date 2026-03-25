@@ -517,6 +517,11 @@ main.content-area {
   color: #0a0618;
 }
 
+.badge-sandbox {
+  background: rgba(101, 163, 13, 0.88);
+  color: #fff;
+}
+
 .card-info {
   padding: 12px 14px 14px;
 }
