@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basketball shoot</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: #172554; color: #e0e7ff; font-family: system-ui, sans-serif;
+    }
+    canvas { border: 2px solid #f97316; border-radius: 4px; background: #1e3a5f; cursor: crosshair; }
+    p { margin: 0.75rem 0 0; font-size: 0.9rem; opacity: 0.9; max-width: 400px; text-align: center; }
+  </style>
+</head>
+<body>
+  <canvas id="c" width="400" height="420" aria-label="Basketball shoot"></canvas>
+  <p>Click to shoot toward the hoop · 3 shots then reset score with R</p>
+  <script>
+    const canvas = document.getElementById("c");
+    const ctx = canvas.getContext("2d");
+    const W = canvas.width, H = canvas.height;
+    const hoop = { x: W / 2 - 45, y: 55, w: 90, h: 12 };
+    let ball, shots, score, dragging;
+
+    function resetRound() {
+      ball = { x: W / 2, y: H - 70, r: 14, vx: 0, vy: 0, flying: false };
+      shots = 0;
+      score = 0;
+      dragging = false;
+    }
+
+    function hoopRect() {
+      return (
+        ball.x > hoop.x - ball.r &&
+        ball.x < hoop.x + hoop.w + ball.r &&
+        ball.y > hoop.y &&
+        ball.y < hoop.y + hoop.h + ball.r * 2
+      );
+    }
+
+    function draw() {
+      ctx.fillStyle = "#1e3a5f";
+      ctx.fillRect(0, 0, W, H);
+      ctx.strokeStyle = "#f97316";
+      ctx.lineWidth = 4;
+      ctx.strokeRect(hoop.x, hoop.y, hoop.w, hoop.h);
+      ctx.fillStyle = "#94a3b8";
+      ctx.fillRect(hoop.x + 10, hoop.y + hoop.h, 8, 40);
+      ctx.fillRect(hoop.x + hoop.w - 18, hoop.y + hoop.h, 8, 40);
+      ctx.fillStyle = "#f97316";
+      ctx.beginPath();
+      ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#e0e7ff";
+      ctx.font = "16px system-ui";
+      ctx.textAlign = "left";
+      ctx.fillText("Score: " + score + "  Shots: " + shots + "/3", 12, H - 14);
+    }
+
+    function loop() {
+      if (ball.flying) {
+        ball.vy += 0.35;
+        ball.x += ball.vx;
+        ball.y += ball.vy;
+        if (hoopRect() && ball.vy > 0) {
+          score++;
+          ball.flying = false;
+          ball.x = W / 2;
+          ball.y = H - 70;
+          ball.vx = ball.vy = 0;
+        }
+        if (ball.y > H + 20 || ball.x < -30 || ball.x > W + 30) {
+          ball.flying = false;
+          ball.x = W / 2;
+          ball.y = H - 70;
+          ball.vx = ball.vy = 0;
+        }
+      }
+      draw();
+      requestAnimationFrame(loop);
+    }
+
+    canvas.addEventListener("click", (e) => {
+      if (ball.flying || shots >= 3) return;
+      const r = canvas.getBoundingClientRect();
+      const mx = e.clientX - r.left;
+      const my = e.clientY - r.top;
+      const scaleX = canvas.width / r.width;
+      const scaleY = canvas.height / r.height;
+      const tx = mx * scaleX;
+      const ty = my * scaleY;
+      const dx = tx - ball.x;
+      const dy = ty - ball.y;
+      const len = Math.hypot(dx, dy) || 1;
+      const power = Math.min(16, Math.max(6, len / 12));
+      ball.vx = (dx / len) * power;
+      ball.vy = (dy / len) * power;
+      ball.flying = true;
+      shots++;
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.code === "KeyR") {
+        e.preventDefault();
+        resetRound();
+      }
+    });
+
+    resetRound();
+    loop();
+  </script>
+</body>
+</html>

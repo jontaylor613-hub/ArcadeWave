@@ -5,15 +5,15 @@ const GAMES = [
     category: "arcade",
     desc: "Control a ball rolling down an endless slope. Dodge obstacles and survive!",
     url: "https://zkayns.github.io/Slope/",
-    thumb: "images/covers/slope.jpg",
+    thumb: "https://placehold.co/300x195/1a0035/ff2d78?text=SLOPE&font=oswald",
   },
   {
     id: 2,
-    title: "1v1.LOL",
+    title: "Venge.io",
     category: "shooter",
-    desc: "Build and battle in this fast-paced online shooter. Outbuild your enemies!",
-    url: "https://1v1-lol.com/",
-    thumb: "images/covers/1v1.jpg",
+    desc: "Team arena shooter in the browser — pick a class and battle online (replaces risky 1v1 clones).",
+    url: "https://venge.io",
+    thumb: "https://placehold.co/300x195/001a20/00f5ff?text=VENGE.IO&font=oswald",
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ const GAMES = [
     category: "shooter",
     desc: "Egg-based FPS mayhem. Scramble your opponents before they scramble you!",
     url: "https://shellshock.io",
-    thumb: "images/covers/shell-shockers.jpg",
+    thumb: "https://placehold.co/300x195/0a001e/bf00ff?text=SHELL+SHOCKERS&font=oswald",
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ const GAMES = [
     category: "sports",
     desc: "Classic pixel-style American football. Manage your team to the championship!",
     url: "https://retrobowl.me",
-    thumb: "images/covers/retro-bowl.jpg",
+    thumb: "https://placehold.co/300x195/001a0a/00ff88?text=RETRO+BOWL&font=oswald",
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ const GAMES = [
     category: "racing",
     desc: "Insane motorcycle stunts across explosive obstacle courses. Rev it up!",
     url: "https://www.hoodamath.com/games/motox3m.html",
-    thumb: "images/covers/moto-x3m.jpg",
+    thumb: "https://placehold.co/300x195/1a0a00/ffe600?text=MOTO+X3M&font=oswald",
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ const GAMES = [
     category: "shooter",
     desc: "Lightning-fast browser FPS. Pixel art graphics, smooth gameplay.",
     url: "https://krunker.io",
-    thumb: "images/covers/krunker.jpg",
+    thumb: "https://placehold.co/300x195/0a001e/ff6b00?text=KRUNKER&font=oswald",
   },
   {
     id: 7,
@@ -53,7 +53,7 @@ const GAMES = [
     category: "arcade",
     desc: "Run, skate, and jump through space tunnels in this infinite runner!",
     url: "https://run3.io",
-    thumb: "images/covers/run-3.jpg",
+    thumb: "https://placehold.co/300x195/000a1a/00f5ff?text=RUN+3&font=oswald",
   },
   {
     id: 8,
@@ -61,7 +61,7 @@ const GAMES = [
     category: "platformer",
     desc: "Jump and fly to the rhythm in this legendary platformer. Don't crash!",
     url: "https://geometrydash.io",
-    thumb: "images/covers/geometry-dash.jpg",
+    thumb: "https://placehold.co/300x195/1a0020/ff2d78?text=GEOMETRY+DASH&font=oswald",
   },
   {
     id: 9,
@@ -69,39 +69,42 @@ const GAMES = [
     category: "sandbox",
     desc: "The original browser version of Minecraft. Build anything you imagine.",
     url: "https://classic.minecraft.net",
-    thumb: "images/covers/minecraft.jpg",
+    thumb: "https://placehold.co/300x195/001a05/00ff88?text=MINECRAFT&font=oswald",
   },
   {
     id: 10,
     title: "Happy Wheels",
     category: "action",
-    desc: "Physics-based ragdoll chaos. Navigate gruesome obstacle courses!",
-    url: "https://www.happywheelsgame.io",
-    thumb: "images/covers/happy-wheels.jpg",
+    desc: "Physics-based ragdoll chaos on the official site (opens in a new tab).",
+    url: "https://www.totaljerkface.com/happy_wheels.tjf",
+    thumb: "https://placehold.co/300x195/1a0000/ff2d78?text=HAPPY+WHEELS&font=oswald",
+    openInNewTab: true,
   },
   {
     id: 11,
     title: "2048",
     category: "puzzle",
-    desc: "Slide numbered tiles and combine them to reach the elusive 2048 tile.",
-    url: "https://gabrielecirulli.github.io/2048/",
-    thumb: "images/covers/2048.jpg",
+    desc: "Slide numbered tiles and combine them to reach 2048 — hosted here so it always runs.",
+    url: "games/twenty48.html",
+    thumb: "https://placehold.co/300x195/0a0a1a/bf00ff?text=2048&font=oswald",
   },
   {
     id: 12,
-    title: "Cellz.io",
+    title: "Agar.io",
     category: "io",
-    desc: "Grow your cell by eating smaller players — classic eat-or-be-eaten .io action (Agar-style).",
-    url: "https://cellz.io",
-    thumb: "images/covers/agar.jpg",
+    desc: "The official cell-eating arena (opens in a new tab — cannot be embedded here).",
+    url: "https://agar.io",
+    thumb: "https://placehold.co/300x195/001a10/00f5ff?text=AGAR.IO&font=oswald",
+    openInNewTab: true,
   },
   {
     id: 13,
     title: "Slither.io",
     category: "io",
-    desc: "Grow your snake by eating glowing orbs. Trap other players to devour them!",
+    desc: "Grow your snake on the official game site (opens in a new tab).",
     url: "https://slither.io",
-    thumb: "images/covers/slither.jpg",
+    thumb: "https://placehold.co/300x195/000a10/00ff88?text=SLITHER.IO&font=oswald",
+    openInNewTab: true,
   },
   {
     id: 14,
@@ -109,7 +112,7 @@ const GAMES = [
     category: "io",
     desc: "Claim territory on the map. Watch your back — others want your land!",
     url: "https://paper-io.com",
-    thumb: "images/covers/paper-io.jpg",
+    thumb: "https://placehold.co/300x195/1a0010/ff2d78?text=PAPER.IO+2&font=oswald",
   },
   {
     id: 15,
@@ -117,31 +120,32 @@ const GAMES = [
     category: "puzzle",
     desc: "Guess the 5-letter word in 6 tries. The classic word game everyone loves.",
     url: "https://mikhad.github.io/wordle/",
-    thumb: "images/covers/wordle.jpg",
+    thumb: "https://placehold.co/300x195/0a001a/bf00ff?text=WORDLE&font=oswald",
   },
   {
     id: 16,
-    title: "Basketball Stars",
+    title: "Basketball Shoot",
     category: "sports",
-    desc: "1v1 basketball showdowns. Dribble past your rival and slam it home!",
-    url: "https://basketball-stars.github.io/",
-    thumb: "images/covers/basketball-stars.jpg",
+    desc: "Click to aim shots at the hoop — simple arcade basketball hosted here.",
+    url: "games/basketball.html",
+    thumb: "https://placehold.co/300x195/001500/00ff88?text=BASKETBALL&font=oswald",
   },
   {
     id: 17,
     title: "Friday Night Funkin",
     category: "arcade",
-    desc: "Rhythm battle your way through funky musical showdowns. Hit every beat!",
-    url: "https://w8.snokido.com/games/html5/friday-night-funkin/index.html",
-    thumb: "images/covers/fnf.jpg",
+    desc: "Official Newgrounds release by the creators (opens in a new tab — full game, no sketchy mirrors).",
+    url: "https://www.newgrounds.com/portal/view/770371",
+    thumb: "https://placehold.co/300x195/1a0030/ff2d78?text=FNF&font=oswald",
+    openInNewTab: true,
   },
   {
     id: 18,
     title: "Snake Game",
     category: "arcade",
-    desc: "The timeless classic. Eat, grow longer, and don't bite your own tail!",
-    url: "https://www.snakegoogle.com",
-    thumb: "images/covers/snake.jpg",
+    desc: "Classic snake — eat, grow, and don't hit the walls (hosted here).",
+    url: "games/snake.html",
+    thumb: "https://placehold.co/300x195/00100a/00f5ff?text=SNAKE&font=oswald",
   },
   {
     id: 19,
@@ -149,15 +153,15 @@ const GAMES = [
     category: "puzzle",
     desc: "Stack falling blocks and clear lines in this legendary puzzle game.",
     url: "https://chvin.github.io/react-tetris/",
-    thumb: "images/covers/tetris.jpg",
+    thumb: "https://placehold.co/300x195/0a0020/bf00ff?text=TETRIS&font=oswald",
   },
   {
     id: 20,
     title: "Tunnel Rush",
     category: "arcade",
-    desc: "Fly through a psychedelic neon tunnel at insane speed. React or die!",
-    url: "https://tunnelrush.io",
-    thumb: "images/covers/tunnel-rush.jpg",
+    desc: "Dodge obstacles in a fast 3D tunnel — GitHub-hosted build (not ad redirects).",
+    url: "https://tunnel-rush-play.github.io/",
+    thumb: "https://placehold.co/300x195/1a001a/ff2d78?text=TUNNEL+RUSH&font=oswald",
   },
   {
     id: 21,
@@ -165,7 +169,7 @@ const GAMES = [
     category: "arcade",
     desc: "Google's iconic offline dinosaur runner. Jump over cacti, dodge pterodactyls!",
     url: "https://wayou.github.io/t-rex-runner/",
-    thumb: "images/covers/dino.jpg",
+    thumb: "https://placehold.co/300x195/0a0a0a/00f5ff?text=DINO&font=oswald",
   },
   {
     id: 22,
@@ -173,23 +177,23 @@ const GAMES = [
     category: "racing",
     desc: "Drift your car around endless corners. One tap — pure skill!",
     url: "https://driftboss.io",
-    thumb: "images/covers/drift-boss.jpg",
+    thumb: "https://placehold.co/300x195/1a0800/ffe600?text=DRIFT+BOSS&font=oswald",
   },
   {
     id: 23,
-    title: "Crossy Road",
+    title: "Clumsy Bird",
     category: "arcade",
-    desc: "Hop across traffic, rivers, and trains. How far can you go?",
-    url: "https://www.crossyroad.com",
-    thumb: "images/covers/crossy-road.jpg",
+    desc: "Flap through pipes — a trustworthy Flappy-style game (replaces broken Crossy Road embeds).",
+    url: "https://ellisonleao.github.io/clumsy-bird/",
+    thumb: "https://placehold.co/300x195/001a08/00ff88?text=CLUMSY+BIRD&font=oswald",
   },
   {
     id: 24,
     title: "Celeste Classic",
     category: "platformer",
-    desc: "Pico-8 precision platforming. Climb the mountain one screen at a time!",
-    url: "https://www.lexaloffle.com/bbs/widget.php?pid=celeste_classic",
-    thumb: "images/covers/celeste-classic.jpg",
+    desc: "Pico-8 precision platforming — official Lexaloffle player page.",
+    url: "https://www.lexaloffle.com/bbs/play.php?pid=celeste_classic",
+    thumb: "https://placehold.co/300x195/000a1a/00f5ff?text=CELESTE&font=oswald",
   },
   {
     id: 25,
@@ -197,15 +201,15 @@ const GAMES = [
     category: "arcade",
     desc: "Chomp dots, dodge ghosts, and clear the maze in this arcade legend.",
     url: "https://pacman.live",
-    thumb: "images/covers/pac-man.jpg",
+    thumb: "https://placehold.co/300x195/1a1a00/ffe600?text=PAC-MAN&font=oswald",
   },
   {
     id: 26,
-    title: "HexGL",
+    title: "Hue Jumper 2K",
     category: "racing",
-    desc: "Futuristic hover-craft racing through a blazing neon track. Pure speed!",
-    url: "https://hexgl.bkcore.com",
-    thumb: "images/covers/hexgl.jpg",
+    desc: "Neon endless runner by Frank Force — same spirit as HexGL, runs reliably in-browser.",
+    url: "https://killedbyapixel.github.io/HueJumper2k/",
+    thumb: "https://placehold.co/300x195/0a001a/ff2d78?text=HUE+JUMPER&font=oswald",
   },
   {
     id: 27,
@@ -213,15 +217,15 @@ const GAMES = [
     category: "arcade",
     desc: "Type words to blast incoming ships. A skillful mash-up of typing and arcade action.",
     url: "https://zty.pe/",
-    thumb: "images/covers/ztype.jpg",
+    thumb: "https://placehold.co/300x195/1a0a1a/bf00ff?text=ZTYPE&font=oswald",
   },
   {
     id: 28,
     title: "Space Invaders",
     category: "shooter",
-    desc: "Classic arcade shooter — wipe out the alien waves before they reach you.",
-    url: "https://labs.phaser.io/view.html?src=src/games/invaders/view.js&v=3.85.0",
-    thumb: "images/covers/space-invaders.jpg",
+    desc: "Classic shooter — hosted here so it always loads (no third-party labs redirects).",
+    url: "games/invaders.html",
+    thumb: "https://placehold.co/300x195/0a0020/bf00ff?text=INVADERS&font=oswald",
   },
 ];
 
@@ -346,6 +350,7 @@ function renderGames() {
     card.setAttribute("tabindex", "0");
     card.setAttribute("data-url", g.url);
     card.setAttribute("data-title", g.title);
+    if (g.openInNewTab) card.setAttribute("data-new-tab", "1");
     card.setAttribute("aria-label", `Play ${g.title}`);
 
     const badgeClass = `cat-badge badge-${g.category}`;
@@ -385,6 +390,7 @@ function buildTopGames() {
     row.setAttribute("tabindex", "0");
     row.setAttribute("data-url", g.url);
     row.setAttribute("data-title", g.title);
+    if (g.openInNewTab) row.setAttribute("data-new-tab", "1");
     row.setAttribute("aria-label", `Play ${g.title}, rank ${i + 1}`);
     row.innerHTML = `
       <div class="top-rank">#${i + 1}</div>
@@ -399,6 +405,10 @@ function openGameFromEl(el) {
   const url = el.getAttribute("data-url");
   const title = el.getAttribute("data-title");
   if (!url || !title) return;
+  if (el.getAttribute("data-new-tab") === "1") {
+    window.open(url, "_blank", "noopener,noreferrer");
+    return;
+  }
   const modal = document.getElementById("modal");
   const frame = document.getElementById("gameFrame");
   const modalTitle = document.getElementById("modalTitle");

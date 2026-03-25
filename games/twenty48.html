@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2048</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: #1c1917; color: #fafaf9; font-family: system-ui, sans-serif;
+    }
+    h1 { font-size: 1.25rem; font-weight: 600; margin: 0 0 0.5rem; }
+    #board {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+      padding: 10px; background: #44403c; border-radius: 8px; width: min(92vw, 340px);
+    }
+    .cell {
+      aspect-ratio: 1; border-radius: 6px; display: flex; align-items: center;
+      justify-content: center; font-weight: 700; font-size: clamp(1rem, 5vw, 1.35rem);
+      background: #292524;
+    }
+    .t2 { background: #e7e5e4; color: #1c1917; }
+    .t4 { background: #d6d3d1; color: #1c1917; }
+    .t8 { background: #fdba74; color: #1c1917; }
+    .t16 { background: #fb923c; color: #fff; }
+    .t32 { background: #f97316; color: #fff; }
+    .t64 { background: #ea580c; color: #fff; }
+    .t128 { background: #fbbf24; color: #1c1917; font-size: clamp(0.85rem, 4vw, 1.1rem); }
+    .t256 { background: #f59e0b; color: #1c1917; font-size: clamp(0.85rem, 4vw, 1.1rem); }
+    .t512 { background: #d97706; color: #fff; font-size: clamp(0.85rem, 4vw, 1.1rem); }
+    .t1024, .t2048 { background: #b45309; color: #fff; font-size: clamp(0.7rem, 3.5vw, 1rem); }
+    p { margin: 0.75rem 0 0; font-size: 0.85rem; opacity: 0.8; }
+  </style>
+</head>
+<body>
+  <h1>2048</h1>
+  <div id="board" aria-live="polite"></div>
+  <p>Arrow keys to slide · R to restart</p>
+  <script>
+    let grid;
+
+    function mergeLine(vals) {
+      const nums = vals.filter((v) => v !== 0);
+      const out = [];
+      for (let i = 0; i < nums.length; i++) {
+        if (i + 1 < nums.length && nums[i] === nums[i + 1]) {
+          out.push(nums[i] * 2);
+          i++;
+        } else out.push(nums[i]);
+      }
+      while (out.length < 4) out.push(0);
+      return out;
+    }
+
+    function empty() {
+      return Array(16).fill(0);
+    }
+
+    function spawn() {
+      const free = [];
+      grid.forEach((v, i) => {
+        if (v === 0) free.push(i);
+      });
+      if (!free.length) return;
+      grid[free[(Math.random() * free.length) | 0]] = Math.random() < 0.9 ? 2 : 4;
+    }
+
+    function reset() {
+      grid = empty();
+      spawn();
+      spawn();
+      draw();
+    }
+
+    function cls(n) {
+      if (!n) return "cell";
+      const k = n >= 2048 ? 2048 : n;
+      return "cell t" + k;
+    }
+
+    function draw() {
+      const b = document.getElementById("board");
+      b.replaceChildren();
+      for (let i = 0; i < 16; i++) {
+        const d = document.createElement("div");
+        const v = grid[i];
+        d.className = cls(v);
+        d.textContent = v || "";
+        b.appendChild(d);
+      }
+    }
+
+    function same(a, b) {
+      return a.every((v, i) => v === b[i]);
+    }
+
+    function moveLeft() {
+      let moved = false;
+      for (let r = 0; r < 4; r++) {
+        const base = r * 4;
+        const row = [grid[base], grid[base + 1], grid[base + 2], grid[base + 3]];
+        const next = mergeLine(row);
+        if (!same(row, next)) moved = true;
+        for (let c = 0; c < 4; c++) grid[base + c] = next[c];
+      }
+      return moved;
+    }
+
+    function moveRight() {
+      let moved = false;
+      for (let r = 0; r < 4; r++) {
+        const base = r * 4;
+        const row = [grid[base + 3], grid[base + 2], grid[base + 1], grid[base]];
+        const next = mergeLine(row);
+        if (!same(row, next)) moved = true;
+        for (let c = 0; c < 4; c++) grid[base + 3 - c] = next[c];
+      }
+      return moved;
+    }
+
+    function moveUp() {
+      let moved = false;
+      for (let c = 0; c < 4; c++) {
+        const col = [grid[c], grid[c + 4], grid[c + 8], grid[c + 12]];
+        const next = mergeLine(col);
+        if (!same(col, next)) moved = true;
+        for (let r = 0; r < 4; r++) grid[c + r * 4] = next[r];
+      }
+      return moved;
+    }
+
+    function moveDown() {
+      let moved = false;
+      for (let c = 0; c < 4; c++) {
+        const col = [grid[c + 12], grid[c + 8], grid[c + 4], grid[c]];
+        const next = mergeLine(col);
+        if (!same(col, next)) moved = true;
+        for (let r = 0; r < 4; r++) grid[c + (3 - r) * 4] = next[r];
+      }
+      return moved;
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.code === "KeyR") {
+        e.preventDefault();
+        reset();
+        return;
+      }
+      let m = false;
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        m = moveLeft();
+      }
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        m = moveRight();
+      }
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        m = moveUp();
+      }
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        m = moveDown();
+      }
+      if (m) spawn();
+      draw();
+    });
+
+    reset();
+  </script>
+</body>
+</html>
