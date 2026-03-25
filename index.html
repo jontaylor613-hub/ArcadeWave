@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARCADEWAVE — Free Unblocked Games</title>
+  <meta name="description" content="ArcadeWave - Play hundreds of free unblocked games. Action, puzzle, IO games, sports and more. No downloads required.">
+  <meta name="keywords" content="unblocked games, free games, arcade games, play at school, html5 games">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to games</a>
+
+  <div class="sky-gradient" aria-hidden="true"></div>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="stars" id="stars" aria-hidden="true"></div>
+  <div class="retro-sun" aria-hidden="true"></div>
+
+  <div class="mountains" aria-hidden="true">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="mg1" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#a855f7" stop-opacity="0.55"/>
+          <stop offset="100%" stop-color="#060510" stop-opacity="1"/>
+        </linearGradient>
+        <linearGradient id="mg2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ff3d85" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#060510" stop-opacity="1"/>
+        </linearGradient>
+      </defs>
+      <polygon points="0,120 0,80 120,20 240,70 360,10 500,60 600,5 720,50 840,15 960,55 1080,0 1200,50 1320,20 1440,60 1440,120" fill="url(#mg1)"/>
+      <polygon points="0,120 0,95 150,50 300,90 450,40 550,80 700,30 820,75 950,35 1100,70 1250,30 1380,65 1440,50 1440,120" fill="url(#mg2)"/>
+    </svg>
+  </div>
+
+  <div class="grid-floor" aria-hidden="true"></div>
+
+  <div class="wrapper">
+    <header>
+      <div class="logo-wrap">
+        <h1 class="logo">ARCADEWAVE</h1>
+        <p class="logo-sub">FREE UNBLOCKED GAMES</p>
+      </div>
+    </header>
+
+    <div class="ad-leaderboard" aria-label="Advertisement placeholder">728 × 90 — Leaderboard</div>
+
+    <div class="ticker-wrap" aria-hidden="true">
+      <div class="ticker" id="ticker"></div>
+    </div>
+
+    <div class="controls">
+      <div class="search-wrap">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <label for="search" class="visually-hidden">Search games</label>
+        <input type="search" id="search" name="q" placeholder="Search games…" autocomplete="off" enterkeyhint="search">
+      </div>
+      <div class="cats" id="cats" role="toolbar" aria-label="Game categories"></div>
+    </div>
+
+    <main id="main-content" class="content-area">
+      <div>
+        <p class="game-count" id="gameCount" aria-live="polite"></p>
+        <div class="games-grid" id="gamesGrid"></div>
+      </div>
+
+      <aside class="sidebar" aria-label="Sidebar">
+        <div class="ad-sidebar" aria-label="Advertisement placeholder">300 × 250</div>
+        <div class="sidebar-widget">
+          <h2 class="widget-title">TOP PLAYED</h2>
+          <div id="topGames"></div>
+        </div>
+      </aside>
+    </main>
+
+    <div class="ad-bottom" aria-label="Advertisement placeholder">728 × 90</div>
+
+    <footer>
+      <div class="footer-logo">ARCADEWAVE</div>
+      <p class="footer-text">
+        Free unblocked games for everyone.<br>
+        All games are property of their respective owners.<br>
+        © 2026 ArcadeWave
+      </p>
+    </footer>
+  </div>
+
+  <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">GAME NAME</div>
+      <button type="button" class="modal-close" id="modalClose" aria-label="Close game player">Close</button>
+    </div>
+    <div class="modal-frame-wrap">
+      <iframe id="gameFrame" title="Game" allowfullscreen allow="gamepad *"></iframe>
+    </div>
+  </div>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
